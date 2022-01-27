@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReactJS</title>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+
+  <body>
+    <!-- 
+    - React elements
+      - Sử dụng props giống như với attribute của thẻ HTML
+      - 2 props class, for => className, htmlFor
+      - Phải tuân theo quy ước có sẵn
+    - React components
+      - Sử dụng props giống như đối số cho Component
+      - Tự do đặt tên props
+        - Đặt theo camelCase
+        - Có thể bao gồm dấu gạch ngang
+    - Chú ý:
+      - Prop "key" là prop đặc biệt
+      - Props cơ bản là đối số của Component
+        => Props có thể là bất cứ kiểu dữ liệu gì
+      - Sử dụng destructuring
+   -->
+
+    <div id="app"></div>
+
+    <script type="text/babel">
+      const courses = [
+        {
+          id: 7,
+          title: "Kiến Thức Nhập Môn IT",
+          slug: "lessons-for-newbie",
+          description:
+            "Để có cái nhìn tổng quan về ngành IT - Lập trình web các bạn nên xem các videos tại khóa này trước nhé.",
+          image: "courses/7.png",
+          content: null,
+          video_type: "youtube",
+          video: "M62l1xA5Eu8",
+          priority: 0,
+          students_count: 49799,
+          old_price: 0,
+          price: 0,
+          is_pro: false,
+          deleted_at: null,
+          created_at: "2020-02-10T14:23:13.000000Z",
+          updated_at: "2022-01-20T07:46:40.000000Z",
+          image_url: "https://cdn.fullstack.edu.vn/f8-production/courses/7.png",
+          video_url: "https://www.youtube.com/watch?v=M62l1xA5Eu8",
+        },
+        {
+          id: 4,
+          title: 'App "Đừng Chạm Tay Lên Mặt"',
+          slug: "tool-canh-bao-so-len-mat",
+          description:
+            "Xây dựng ứng dụng đưa ra cảnh báo khi người dùng sờ tay lên mặt. Chúng ta sẽ sử dụng thư viện ReactJS & Tensoflow để hoàn thiện ứng dụng này.",
+          image: "courses/4/61a9e9e701506.png",
+          content: null,
+          video_type: "youtube",
+          video: "r6GWbQL-qwA",
+          priority: 50,
+          students_count: 4295,
+          old_price: 0,
+          price: 0,
+          is_pro: false,
+          deleted_at: null,
+          created_at: "2020-01-10T14:23:13.000000Z",
+          updated_at: "2022-01-19T17:51:57.000000Z",
+          image_url:
+            "https://cdn.fullstack.edu.vn/f8-production/courses/4/61a9e9e701506.png",
+          video_url: "https://www.youtube.com/watch?v=r6GWbQL-qwA",
+        },
+      ];
+
+      function PostItem(props) {
+        return (
+          <div className="post-item">
+            <h2 className="post-title" onClick={() => alert(props.title)}>{props.title}</h2>
+            <img src={props.image} alt={props.title}></img>
+            <p className="post-desc">{props.description}</p>
+            <p className="post-publishsed">{props.publishedAt}</p>
+          </div>
+        );
+      }
+
+      function App() {
+        return (
+          <div className="warrap">
+            {
+              courses.map((course) => <PostItem
+                key={course.id}
+                image={course.image_url}
+                title={course.title}
+                description={course.description}
+                publishedAt={course.students_count}
+              />)
+            }
+          </div>
+        );
+      }
+
+      // React-DOM -> render UI
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>
